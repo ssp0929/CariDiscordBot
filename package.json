@@ -4,7 +4,7 @@
   "description": "Discord bot for private Discord server.",
   "main": "index.js",
   "scripts": {
-    "start": "node --exec babel-node src/server.js",
+    "start": "babel-node src/server.js",
     "dev": "nodemon --exec babel-node src/server.js"
   },
   "repository": {
