@@ -5,14 +5,14 @@ import Discord from "discord.js";
 const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+client.on("ready", () => {
+  // console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', (msg) => {
+client.on("message", (msg) => {
   // console.log(msg);
   let content = msg.content;
-  let compactedString = content.split(' ').join('');
+  let compactedString = content.split(" ").join("");
   if (compactedString.includes("ping")) {
     msg.reply("Pong!");
   }
@@ -25,7 +25,9 @@ client.on("guildMemberAdd", (member) => {
     ch.name === "general"
   );
   // Do nothing if the channel wasn't found on this server
-  if (!channel) return;
+  if (!channel) {
+    return;
+  }
   // Send the message, mentioning the member
   channel.send(`Welcome to the server, ${member}`);
 });
