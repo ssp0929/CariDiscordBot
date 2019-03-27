@@ -4,4 +4,4 @@
 
 [Trello](https://trello.com/b/LWKgAyiK)
 
-Discord bot for private Discord server.
+Private Discord bot for private Discord server.
