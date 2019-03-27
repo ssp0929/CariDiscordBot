@@ -10,7 +10,7 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
-  console.log(msg);
+  // console.log(msg);
   let content = msg.content;
   let compactedString = content.split(' ').join('');
   if (compactedString.includes("ping")) {
