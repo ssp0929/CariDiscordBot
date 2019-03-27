@@ -10,7 +10,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
+  let compactedString = msg.split(' ').join('');
+  if (compactedString.includes('ping')) {
     msg.reply('Pong!');
   }
 });
