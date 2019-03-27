@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import Discord from 'discord.js';
+import "dotenv/config";
+import Discord from "discord.js";
 
 // Initialize and login
 const client = new Discord.Client();
@@ -11,15 +11,15 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   let compactedString = msg.split(' ').join('');
-  if (compactedString.includes('ping')) {
-    msg.reply('Pong!');
+  if (compactedString.includes("ping")) {
+    msg.reply("Pong!");
   }
 });
 
 // Create an event listener for new guild members
-client.on('guildMemberAdd', member => {
+client.on("guildMemberAdd", member => {
   // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find(ch => ch.name === 'general');
+  const channel = member.guild.channels.find(ch => ch.name === "general");
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
