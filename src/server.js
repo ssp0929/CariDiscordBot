@@ -1,33 +1,35 @@
 import "dotenv/config";
 import Discord from "discord.js";
+import * as MessageHandler from "./handlers/messages";
+import * as CommandHandler from "./handlers/commands";
 
 // Initialize and login
 const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
 client.on("ready", () => {
-  // console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", (msg) => {
-  // console.log(msg);
-  let content = msg.content;
-  let compactedString = content.split(" ").join("");
-  if (compactedString.includes("ping")) {
-    msg.reply("Pong!");
+  const prefix = "!";
+
+  if (msg.content.indexOf(prefix) === 0) {
+    CommandHandler.onCommand(msg, prefix);
+  } else {
+    MessageHandler.onMessage(msg);
   }
 });
 
-// Create an event listener for new guild members
 client.on("guildMemberAdd", (member) => {
-  // Send the message to a designated channel on a server
   const channel = member.guild.channels.find( (ch) => 
     ch.name === "general"
   );
-  // Do nothing if the channel wasn't found on this server
+
   if (!channel) {
     return;
   }
-  // Send the message, mentioning the member
+  
   channel.send(`Welcome to the server, ${member}`);
 });
+

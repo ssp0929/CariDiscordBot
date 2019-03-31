@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node src/server.js",
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/server.js",
+    "testSchema": "babel-node src/models/schema.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   "homepage": "https://github.com/ssp0929/CariDiscordBot#readme",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "dotenv": "^7.0.0"
+    "dotenv": "^7.0.0",
+    "mongoose": "^5.4.20"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
