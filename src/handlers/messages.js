@@ -1,29 +1,55 @@
+/* eslint-disable no-restricted-syntax */
 import * as Randomizer from "../utils/randomizer";
+import { dabChoices } from "../utils/dabChoices";
+import { 
+  pingArray, 
+  dabArray, 
+  hateArray, 
+  haegArray,
+} from "../utils/messageChoices";
+
+const haegReplace = (userMessageStringPreserveCase) => {
+  const preserveCaseArray = userMessageStringPreserveCase.split(" ");
+  const reconstructedMessageArray = [];
+  for (const word of preserveCaseArray) {
+    if (haegArray.includes(word.toLowerCase())) {
+      reconstructedMessageArray.push("HAEG");
+    } else {
+      reconstructedMessageArray.push(word);
+    }
+  }
+
+  return reconstructedMessageArray.join(" ");
+};
 
 module.exports = {
   onMessage(msg) {
-    const userMessageString = msg.content;
-    const userMessageArray = userMessageString.toLowerCase().split(" ");
+    const userMessageString = msg.content.toLowerCase();
+    const userMessageStringPreserveCase = msg.content;
+    const userMessageArray = userMessageString.split(" ");
 
-    if (userMessageArray.includes("ping")) {
+    if (userMessageArray.some(word => pingArray.includes(word))) {
       msg.reply("Pong!");
     }
 
-    if (userMessageArray.includes("dab")) {
-      const dabOptions = [
-        "src/assets/img/highSpeedDab.gif", 
-        "src/assets/img/dabPanda.png", 
-        "src/assets/img/dabSquid.png", 
-        "src/assets/img/dabSquidAnimated.gif"
-      ];
-      const dabOptionsLength = dabOptions.length;
-      let dabIndex = Randomizer.generate(dabOptionsLength);
-      // console.log("Dab chosen", dabOptions[dabIndex]);
+    if (userMessageArray.some(word => dabArray.includes(word))) {
+      const options = dabChoices;
+      const optionsLength = options.length;
+      const index = Randomizer.generate(optionsLength);
+      // console.log("Dab chosen", options[index]);
       msg.channel.send({
         files: [{
-          attachment: dabOptions[dabIndex]
-        }]
-      })
+          attachment: options[index],
+        }],
+      });
     }
-  }
-}
+
+    if (userMessageArray.some(word => hateArray.includes(word))) {
+      msg.channel.send("https://streamable.com/lhanx");
+    }
+
+    if (userMessageArray.some(word => haegArray.includes(word))) {
+      msg.reply(`I think you meant to say '${haegReplace(userMessageStringPreserveCase)}'`);
+    }
+  },
+};
