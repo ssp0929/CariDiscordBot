@@ -1,0 +1,15 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "quotes": ["error", "double"],
+    "linebreak-style": "off",
+    "no-trailing-spaces": "off",
+    "import/prefer-default-export": "off",
+    "no-restricted-syntax": "off"
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint"
+}
