@@ -60,4 +60,4 @@ package.json - General npm configurations and npm scripts.
 
 package-log.json - Generated npm lockfile, allows for dependency version locking for direct dependecies as well as downstream dependencies of those direct dependencies.
 
-.env - As explained prior, specific environment variables needed for the bot that we need but don't want checked into version control and visible publicly. Dotenv npm module handles loading in these variables in server.js and models/mongo/db.js on application start.
+.env - As explained prior, specific environment variables needed for the bot that we need but don't want checked into version control and visible publicly. Dotenv npm module handles loading in these variables in server.js and models/mongo/db.js on application start!
