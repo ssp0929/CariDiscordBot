@@ -6,7 +6,7 @@
 [Trello](https://trello.com/b/LWKgAyiK)
 
 ## Development
-Due to the nature of how Discord 'apps' work, we cannot spin up multiple instances of the same bot application mapping to bot users in Discord. As a workaround, you can create your own personal Discord 'app' [here](https://discordapp.com/developers/applications and invite them to the channel to test your development work.
+Due to the nature of how Discord 'apps' work, we cannot spin up multiple instances of the same bot application mapping to bot users in Discord. As a workaround, you can create your own personal Discord 'app' [here](https://discordapp.com/developers/applications) and invite them to the channel to test your development work.
 
 You will also need to create an .env file in the root level to pass the necessary TOKENS to get it to work. This file is .gitignored to prevent public keys/tokens/secrets from being visible in version control.
 
