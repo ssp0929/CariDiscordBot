@@ -11,24 +11,24 @@ Due to the nature of how Discord 'apps' work, we cannot spin up multiple instanc
 You will also need to create an .env file in the root level to pass the necessary TOKENS to get it to work. This file is .gitignored to prevent public keys/tokens/secrets from being visible in version control.
 
 The structure of the .env file in its current state:
-~~~~
+```javascript
 // .env
 TOKEN={bot token from user} // STRING
 MONGO_USER={db_name} // STRING
 MONGO_PASS={db_password} // STRING
-~~~~
+```
 
 ## NPM scripts
 
-```
+```javascript
 npm run start // This allows you to run a babel-node compiled instance of the bot given you have the correct credentials in the .env file.
 ```
 
-```
+```javascript
 npm run dev // This allows you to run a NODEMON babel-node compiled instance of the bot given you have the correct credentials in the .env file. (hot-reload)
 ```
 
-```
+```javascript
 npm run testSchema // This is a good schema/connection test for Mongo. Will soon be deprecated.
 ```
 
