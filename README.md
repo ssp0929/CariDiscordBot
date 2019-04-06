@@ -20,15 +20,15 @@ MONGO_PASS={db_password} // STRING
 
 ## NPM scripts
 
-```javascript
+```bash
 npm run start // This allows you to run a babel-node compiled instance of the bot given you have the correct credentials in the .env file.
 ```
 
-```javascript
+```bash
 npm run dev // This allows you to run a NODEMON babel-node compiled instance of the bot given you have the correct credentials in the .env file. (hot-reload)
 ```
 
-```javascript
+```bash
 npm run testSchema // This is a good schema/connection test for Mongo. Will soon be deprecated.
 ```
 
