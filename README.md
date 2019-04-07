@@ -13,9 +13,9 @@ You will also need to create an .env file in the root level to pass the necessar
 The structure of the .env file in its current state:
 ```javascript
 // .env
-TOKEN={bot token from user} // STRING
-MONGO_USER={db_name} // STRING
-MONGO_PASS={db_password} // STRING
+TOKEN=YOUR_BOT_TOKEN_HERE // STRING
+MONGO_USER=YOUR_DB_USERNAME_HERE // STRING
+MONGO_PASS=YOUR_DB_PASSWORD_HERE // STRING
 ```
 
 ## NPM scripts
@@ -60,4 +60,4 @@ package.json - General npm configurations and npm scripts.
 
 package-log.json - Generated npm lockfile, allows for dependency version locking for direct dependecies as well as downstream dependencies of those direct dependencies.
 
-.env - As explained prior, specific environment variables needed for the bot that we need but don't want checked into version control and visible publicly. Dotenv npm module handles loading in these variables in server.js and models/mongo/db.js on application start!
+.env - As explained prior, specific environment variables needed for the bot that we need but don't want checked into version control and visible publicly. Dotenv npm module handles loading in these variables in server.js and models/mongo/db.js on application start.
