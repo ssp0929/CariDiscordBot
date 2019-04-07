@@ -13,9 +13,9 @@ You will also need to create an .env file in the root level to pass the necessar
 The structure of the .env file in its current state:
 ```javascript
 // .env
-TOKEN={bot token from user} // STRING
-MONGO_USER={db_name} // STRING
-MONGO_PASS={db_password} // STRING
+TOKEN=YOUR_BOT_TOKEN_HERE // STRING
+MONGO_USER=YOUR_DB_USERNAME_HERE // STRING
+MONGO_PASS=YOUR_DB_PASSWORD_HERE // STRING
 ```
 
 ## NPM scripts
