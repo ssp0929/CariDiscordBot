@@ -18,6 +18,9 @@ client.on("ready", () => {
 client.on("message", (msg) => {
   const generalPrefix = "!";
   const rpgPrefix = "?";
+
+  // Ignore triggering off of bot messages
+  if (msg.author.bot) { return; }
   
   if (msg.content.indexOf(generalPrefix) === 0) {
     CommandHandler.onCommand(msg, generalPrefix);
