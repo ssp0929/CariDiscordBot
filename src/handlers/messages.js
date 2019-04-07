@@ -6,6 +6,7 @@ import {
   dabArray, 
   hateArray, 
   haegArray,
+  postureArray,
 } from "../utils/messageChoices";
 
 const haegReplace = (userMessageStringPreserveCase) => {
@@ -50,6 +51,10 @@ module.exports = {
 
     if (userMessageArray.some(word => haegArray.includes(word))) {
       msg.reply(`I think you meant to say '${haegReplace(userMessageStringPreserveCase)}'`);
+    }
+
+    if (userMessageArray.some(word => postureArray.includes(word))) {
+      msg.react("🍆");
     }
   },
 };
