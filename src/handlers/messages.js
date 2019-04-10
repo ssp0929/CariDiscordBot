@@ -8,6 +8,7 @@ import {
   haegArray,
   postureArray,
 } from "../utils/messageChoices";
+import * as dabIncrement from "../utils/dabIncrement";
 
 const haegReplace = (userMessageStringPreserveCase) => {
   const preserveCaseArray = userMessageStringPreserveCase.split(" ");
@@ -43,6 +44,7 @@ module.exports = {
           attachment: options[index],
         }],
       });
+      dabIncrement.exec( msg.author.username.toLowerCase(), msg );
     }
 
     if (userMessageArray.some(word => hateArray.includes(word))) {
