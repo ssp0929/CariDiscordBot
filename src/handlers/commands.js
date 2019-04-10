@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import * as HelpCommand from "../commands/misc/help";
+import * as DabTrackerCommand from "../commands/misc/dabtracker";
+import * as DabRankingsCommand from "../commands/misc/dabrankings";
 import * as SyncCommand from "../commands/admin/sync";
 import * as AttackCommand from "../commands/rpg/attack";
 import * as ProfileCommand from "../commands/rpg/profile";
@@ -18,6 +20,12 @@ const generalCommands = (msg, command, userMessageArray) => {
     case "help":
       HelpCommand.exec(msg);
       break;
+    case "dabtracker":
+      DabTrackerCommand.exec(msg);
+      break;
+    case "dabrankings":
+      DabRankingsCommand.exec(msg);
+      break;  
     case "":
       msg.channel.send("You didn't specify a command you stupid idiot!");
       break;
