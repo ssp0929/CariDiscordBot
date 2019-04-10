@@ -6,7 +6,8 @@ module.exports = {
     
     if (discordUser.length === 1) {
       return msg.channel.send(`You are at ${discordUser[0].dabCount} dab!`);
-    } else if (discordUser.length) {
+    }
+    if (discordUser.length) {
       return msg.channel.send(`You are at ${discordUser[0].dabCount} dabs!`);
     }
 
