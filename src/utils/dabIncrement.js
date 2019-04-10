@@ -17,13 +17,13 @@ module.exports = {
           msg.channel.send(`*Nice one!* ${dabber} just hit ${updateData.dabCount} dabs!`);
         }
         if (updateError) {
-          console.log(`oof! Error: ${updateError}`);
+          msg.channel.send(`oof! Error: ${updateError}`);
         }
         Users.aggregate(
           [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
           (aggError, aggData) => {
             if (aggError) {
-              console.log(`oof! Error: ${aggError}`);
+              msg.channel.send(`oof! Error: ${aggError}`);
             } else if (aggData[0].total % 25 === 0) {
               msg.channel.send(`**S E R V E R   D A B S   J U S T   H I T**   ${numberMoji.exec(String(aggData[0].total))}`);
             }

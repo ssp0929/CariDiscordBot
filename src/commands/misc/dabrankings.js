@@ -6,7 +6,7 @@ module.exports = {
       [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
       (err, data) => {
         if (err) {
-          console.log(`oof! Error: ${err}`);
+          msg.channel.send(`oof! Error: ${err}`);
         } else {
           total = data;
         }
