@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import "dotenv/config";
-import * as Sentry from "@sentry/node";
+import * as Winston from "winston";
 import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
@@ -13,9 +13,9 @@ const connectToDb = async () => {
   const connectionString = `mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true`;
   try {
     await mongoose.connect(connectionString, { useNewUrlParser: true, autoIndex: false });
-    Sentry.captureMessage("Connected to MongoDB");
+    Winston.log("info", "Connected to MongoDB");
   } catch (err) {
-    Sentry.captureMessage("Could not connect to MongoDB");
+    Winston.log("info", "Could not connect to MongoDB");
   }
 };
 

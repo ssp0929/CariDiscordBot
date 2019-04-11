@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/node";
+import * as Winston from "winston";
 import * as numberMoji from "./numberMoji";
 import Users from "../models/mongo/schema";
 
@@ -18,13 +18,13 @@ module.exports = {
           msg.channel.send(`*Nice one!* ${dabber} just hit ${updateData.dabCount} dabs!`);
         }
         if (updateError) {
-          Sentry.captureException(updateError);
+          Winston.log("error", updateError);
         }
         Users.aggregate(
           [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
           (aggError, aggData) => {
             if (aggError) {
-              Sentry.captureException(aggError);
+              Winston.log("error", aggError);
             } else if (aggData[0].total % 25 === 0) {
               msg.channel.send(`**S E R V E R   D A B S   J U S T   H I T**   ${numberMoji.exec(String(aggData[0].total))}`);
             }
