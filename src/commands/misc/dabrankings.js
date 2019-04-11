@@ -1,3 +1,4 @@
+import * as Winston from "winston";
 import Users from "../../models/mongo/schema";
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
       [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
       (err, data) => {
         if (err) {
-          msg.channel.send(`oof! Error: ${err}`);
+          Winston.log("error", err);
         } else {
           total = data;
         }

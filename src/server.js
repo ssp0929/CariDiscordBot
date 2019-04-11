@@ -1,8 +1,18 @@
 import "dotenv/config";
 import Discord from "discord.js";
+import * as Winston from "winston";
+import { Loggly } from "winston-loggly-bulk";
 import connectToDb from "./models/mongo/db";
 import * as MessageHandler from "./handlers/messages";
 import * as CommandHandler from "./handlers/commands";
+
+// Initialize Winston Logger to transport logs to Loggly
+Winston.add(new Loggly({
+  token: "cf22d076-08ff-4c02-8197-e488a5e8d406",
+  subdomain: "stephenpark",
+  tags: ["Winston-NodeJS"],
+  json: true,
+}));
 
 // Initialize Mongo
 connectToDb();
@@ -12,7 +22,7 @@ const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
 client.on("ready", () => {
-  // console.log(`Logged in as ${client.user.tag}!`);
+  Winston.log("info", `Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", (msg) => {
