@@ -8,7 +8,8 @@
     "linebreak-style": "off",
     "no-trailing-spaces": "off",
     "import/prefer-default-export": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-plusplus": "off"
   },
   "extends": "airbnb",
   "parser": "babel-eslint"
