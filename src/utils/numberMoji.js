@@ -3,7 +3,7 @@ const emojiArray = [":zero:", ":one:", ":two:", ":three:", ":four:", ":five:", "
 module.exports = {
   exec(numArray) {
     let emojiString = "";
-    for (const num of numArray) {
+    for (let num = 0; num < numArray.length; num++) {
       emojiString += emojiArray[parseInt(numArray[num], 10)];
     }
     return emojiString;
