@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+import * as Sentry from "@sentry/node";
 import Users from "../models/mongo/schema";
 
 module.exports = {
@@ -11,9 +12,9 @@ module.exports = {
           discordId: value.id,
           discordName: value.user.username.toLowerCase(),
         });
-        console.log(`${value.user.username} loaded.`);
+        Sentry.captureMessage(`${value.user.username} loaded.`);
       } else {
-        console.log(`${value.user.username} is a bot! Not loaded.`);
+        Sentry.captureMessage(`${value.user.username} is a bot! Not loaded.`);
       }
     }
   },

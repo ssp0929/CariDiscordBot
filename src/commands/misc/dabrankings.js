@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/node";
 import Users from "../../models/mongo/schema";
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
       [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
       (err, data) => {
         if (err) {
-          msg.channel.send(`oof! Error: ${err}`);
+          Sentry.captureException(err);
         } else {
           total = data;
         }

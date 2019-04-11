@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-syntax */
+import * as Sentry from "@sentry/node";
 import * as Randomizer from "../utils/randomizer";
 import { dabChoices } from "../utils/dabChoices";
 import { 
@@ -38,7 +39,7 @@ module.exports = {
       const options = dabChoices;
       const optionsLength = options.length;
       const index = Randomizer.generate(optionsLength);
-      // console.log("Dab chosen", options[index]);
+      Sentry.captureMessage("Dab chosen", options[index]);
       msg.channel.send({
         files: [{
           attachment: options[index],

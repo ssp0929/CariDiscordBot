@@ -1,8 +1,12 @@
 import "dotenv/config";
 import Discord from "discord.js";
+import * as Sentry from "@sentry/node";
 import connectToDb from "./models/mongo/db";
 import * as MessageHandler from "./handlers/messages";
 import * as CommandHandler from "./handlers/commands";
+
+// Initialize Sentry Logger
+Sentry.init({ dsn: "https://aae5985300e34b079e6b4b35ac4773fe@sentry.io/1436374" });
 
 // Initialize Mongo
 connectToDb();
@@ -12,7 +16,7 @@ const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
 client.on("ready", () => {
-  // console.log(`Logged in as ${client.user.tag}!`);
+  Sentry.captureMessage(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", (msg) => {

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ssp0929/CariDiscordBot#readme",
   "dependencies": {
+    "@sentry/node": "^5.0.7",
     "axios": "^0.18.0",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0",
