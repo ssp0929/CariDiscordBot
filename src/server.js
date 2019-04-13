@@ -14,6 +14,11 @@ Winston.add(new Loggly({
   json: true,
 }));
 
+process.on("uncaughtException", (err) => {
+  Winston.log("error", err);
+  process.exit(1);
+});
+
 // Initialize Mongo
 connectToDb();
 
