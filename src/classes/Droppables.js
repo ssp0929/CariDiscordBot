@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as Randomizer from "../utils/randomizer";
-import Users from "../models/mongo/schema";
+import { Users } from "../models/mongo/schema";
 
 /** Class representing a Droppable item */
 export default class Droppable {

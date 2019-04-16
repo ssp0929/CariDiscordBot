@@ -23,6 +23,18 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const Users = mongoose.model("users", userSchema);
+const reportSchema = mongoose.Schema({
+  discordId: Number,
+  discordName: String,
+  reportedBy: String,
+  reason: String,
+  timestamp: { type: Date, default: Date.now() },
+});
 
-export default Users;
+const Users = mongoose.model("users", userSchema);
+const Reports = mongoose.model("reports", reportSchema);
+
+export {
+  Users,
+  Reports,
+};

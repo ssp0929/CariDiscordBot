@@ -1,4 +1,4 @@
-import Users from "../../models/mongo/schema";
+import { Users } from "../../models/mongo/schema";
 
 module.exports = {
   async exec(msg) {
