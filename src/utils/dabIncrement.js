@@ -1,6 +1,6 @@
 import * as Winston from "winston";
 import * as numberMoji from "./numberMoji";
-import Users from "../models/mongo/schema";
+import { Users } from "../models/mongo/schema";
 
 module.exports = {
 

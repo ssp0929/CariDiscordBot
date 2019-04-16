@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import * as Winston from "winston";
-import Users from "../models/mongo/schema";
+import { Users } from "../models/mongo/schema";
 
 module.exports = {
   loadDiscordUsersIntoMongo(msg) {

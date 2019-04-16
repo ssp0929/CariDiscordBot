@@ -15,6 +15,8 @@ Winston.add(new Loggly({
 }));
 
 process.on("uncaughtException", (err) => {
+  // eslint-disable-next-line no-console
+  console.log(err);
   Winston.log("error", err);
   process.exit(1);
 });

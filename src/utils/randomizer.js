@@ -14,10 +14,10 @@ module.exports = {
 
     let currentChoice = 0;
     for (let i = 0; i < sumPartitionSize; i += partitionSize) {
-      if (randomNumber >= i && randomNumber < i + partitionSize) {
+      if (randomNumber >= i && randomNumber < (i + partitionSize)) {
         return currentChoice;
       } 
-      currentChoice += 1; 
+      currentChoice++; 
     }
     
     return currentChoice;

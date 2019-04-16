@@ -28,6 +28,6 @@ class ApiRequest {
   }
 }
 
-module.exports = {
+export {
   ApiRequest,
 };
