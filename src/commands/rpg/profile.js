@@ -1,7 +1,6 @@
 import { Users } from "../../models/mongo/schema";
 
-const buildProfileString = (discordUser) => {
-  return `
+const buildProfileString = discordUser => `
 \`\`\`
 ${discordUser[0].discordName}'s profile
 ====================
@@ -15,7 +14,6 @@ Misc:
 :: Dabcount - ${discordUser[0].dabCount}
 \`\`\`
   `;
-};
 
 module.exports = {
   async exec(msg) {
