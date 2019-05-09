@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node src/server.js",
     "dev": "nodemon --exec babel-node src/server.js",
-    "testSchema": "babel-node src/models/mongo/schema.js"
+    "testSchema": "babel-node src/models/mongo/schema.js",
+    "compress": "babel-node src/utils/compressImages.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
     "babel-eslint": "^10.0.1",
+    "compress-images": "^1.5.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
