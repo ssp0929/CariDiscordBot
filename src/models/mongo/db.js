@@ -15,7 +15,7 @@ const connectToDb = async () => {
     await mongoose.connect(connectionString, { useNewUrlParser: true, autoIndex: false });
     Winston.log("info", "Connected to MongoDB");
   } catch (err) {
-    Winston.log("info", "Could not connect to MongoDB");
+    Winston.log("error", err);
   }
 };
 
