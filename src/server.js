@@ -14,10 +14,11 @@ Winston.add(new Loggly({
   json: true,
 }));
 
-process.on("uncaughtException", async (err) => {
+// Handle uncaught exceptions
+process.on("uncaughtException", (err) => {
   // eslint-disable-next-line no-console
-  console.log(err);
-  Winston.log("error", err);
+  console.log(err.stack);
+  Winston.log("error", err.stack);
   flushLogsAndExit();
 });
 
@@ -57,5 +58,3 @@ client.on("guildMemberAdd", (member) => {
 
   channel.send(`Welcome to the server, ${member}`);
 });
-
-throwShittyError();
