@@ -1,7 +1,7 @@
 import "dotenv/config";
 import Discord from "discord.js";
 import * as Winston from "winston";
-import { Loggly } from "winston-loggly-bulk";
+import { Loggly, flushLogsAndExit } from "winston-loggly-bulk";
 import connectToDb from "./models/mongo/db";
 import * as MessageHandler from "./handlers/messages";
 import * as CommandHandler from "./handlers/commands";
@@ -14,11 +14,11 @@ Winston.add(new Loggly({
   json: true,
 }));
 
-process.on("uncaughtException", (err) => {
+process.on("uncaughtException", async (err) => {
   // eslint-disable-next-line no-console
   console.log(err);
   Winston.log("error", err);
-  process.exit(1);
+  flushLogsAndExit();
 });
 
 // Initialize Mongo
@@ -57,3 +57,5 @@ client.on("guildMemberAdd", (member) => {
 
   channel.send(`Welcome to the server, ${member}`);
 });
+
+throwShittyError();

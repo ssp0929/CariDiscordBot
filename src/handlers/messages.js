@@ -11,6 +11,29 @@ import {
 } from "../utils/messageChoices";
 import * as dabIncrement from "../utils/dabIncrement";
 
+const pickRandomDab = async (msg) => {
+  const tenorAPIKey = process.env.TENOR_API_KEY;
+  const searchTerm = "dab";
+  const contentFilter = "low";
+  const mediaFilter = "basic";
+  const queryLimit = 1;
+  const tenorRandomSearchEndpoint = `https://api.tenor.com/v1/random?key=${tenorAPIKey}&q=${searchTerm}&contentfilter=${contentFilter}&media_filter=${mediaFilter}&limit=${queryLimit}`;
+  const tenorRandomSearch = await axios.get(tenorRandomSearchEndpoint);
+
+  if (tenorRandomSearch.data.results && tenorRandomSearch.data.results.length) {
+    const result = tenorRandomSearch.data.results[0];
+    const dabUrl = result.media[0].gif.url;
+
+    Winston.log("info", `Dab chosen ${dabUrl}`);
+    msg.channel.send(dabUrl);
+  } else {
+    Winston.log("error", tenorRandomSearch);
+    msg.channel.send("The Tenor gif API seems to be having issues right now! Please try again later.");
+  }
+
+  dabIncrement.exec(msg.author.username.toLowerCase(), msg);
+};
+
 const haegReplace = (userMessageStringPreserveCase) => {
   const preserveCaseArray = userMessageStringPreserveCase.split(" ");
   const reconstructedMessageArray = [];
@@ -36,26 +59,7 @@ module.exports = {
     }
 
     if (userMessageArray.some(word => dabArray.includes(word))) {
-      const tenorAPIKey = process.env.TENOR_API_KEY;
-      const searchTerm = "dab";
-      const contentFilter = "low";
-      const mediaFilter = "basic";
-      const queryLimit = 1;
-      const tenorRandomSearchEndpoint = `https://api.tenor.com/v1/random?key=${tenorAPIKey}&q=${searchTerm}&contentfilter=${contentFilter}&media_filter=${mediaFilter}&limit=${queryLimit}`;
-      const tenorRandomSearch = await axios.get(tenorRandomSearchEndpoint);
-
-      if (tenorRandomSearch.data.results && tenorRandomSearch.data.results.length) {
-        const result = tenorRandomSearch.data.results[0];
-        const dabUrl = result.media[0].gif.url;
-
-        Winston.log("info", `Dab chosen ${dabUrl}`);
-        msg.channel.send(dabUrl);
-      } else {
-        Winston.log("error", tenorRandomSearch);
-        msg.channel.send("The Tenor gif API seems to be having issues right now! Please try again later.");
-      }
-
-      dabIncrement.exec(msg.author.username.toLowerCase(), msg);
+      pickRandomDab(msg);
     }
 
     if (userMessageArray.some(word => hateArray.includes(word))) {
