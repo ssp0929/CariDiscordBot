@@ -78,6 +78,8 @@ const onCommand = (msg, prefix) => {
   const command = userMessageArray[0].substring(prefix.length);
   
   dynamicPrefixHandler(msg, prefix, command, userMessageArray);
-}
+};
 
-export default onCommand;
+export {
+  onCommand,
+};

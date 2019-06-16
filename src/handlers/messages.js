@@ -73,8 +73,8 @@ const onMessage = async (msg) => {
   if (userMessageArray.some(word => postureArray.includes(word))) {
     msg.react("🍆");
   }
-}
+};
 
-export {
-  onMessage
-}
+export { 
+  onMessage,
+};

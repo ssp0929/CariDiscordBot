@@ -6,6 +6,8 @@ const exec = (numArray) => {
     emojiString += emojiArray[parseInt(numArray[num], 10)];
   }
   return emojiString;
-}
+};
 
-export default exec;
+export { 
+  exec,
+};

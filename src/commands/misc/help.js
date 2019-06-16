@@ -7,4 +7,6 @@ const exec = (msg) => {
   `);
 };
 
-export default exec;
+export { 
+  exec,
+};

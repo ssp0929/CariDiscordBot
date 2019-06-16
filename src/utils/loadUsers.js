@@ -16,6 +16,8 @@ const loadDiscordUsersIntoMongo = (msg) => {
       Winston.log("info", `${value.user.username} is a bot! Not loaded.`);
     }
   }
-}
+};
 
-export default loadDiscordUsersIntoMongo;
+export { 
+  loadDiscordUsersIntoMongo,
+};

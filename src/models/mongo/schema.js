@@ -37,4 +37,4 @@ const Reports = mongoose.model("reports", reportSchema);
 export {
   Users,
   Reports,
-}
+};

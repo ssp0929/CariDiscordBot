@@ -1,7 +1,7 @@
 import * as Winston from "winston";
 import { Users } from "../../models/mongo/schema";
 
-const exec = async(msg) => {
+const exec = async (msg) => {
   let total = await Users.aggregate(
     [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
     (err, data) => {
@@ -32,4 +32,6 @@ const exec = async(msg) => {
   return msg.channel.send(rankings);
 };
 
-export default exec;
+export { 
+  exec,
+};
