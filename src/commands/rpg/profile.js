@@ -15,7 +15,7 @@ Misc:
 \`\`\`
   `;
 
-const exec = async(msg) => {
+const exec = async (msg) => {
   const discordUser = await Users.find({ discordName: msg.author.username.toLowerCase() });
     
   if (discordUser.length) {
@@ -26,4 +26,6 @@ const exec = async(msg) => {
   return msg.channel.send("Profile not found!");
 };
 
-export default exec;
+export { 
+  exec,
+};

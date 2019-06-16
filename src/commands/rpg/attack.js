@@ -15,7 +15,7 @@ const attackUser = async (msg, victim, attackValue, currentHealth) => {
   }
 };
 
-const exec = async(msg, victim) => {
+const exec = async (msg, victim) => {
   if (!victim) {
     return msg.channel.send("You didn't specify who to attack!");
   }
@@ -34,6 +34,8 @@ const exec = async(msg, victim) => {
   }
 
   return msg.channel.send(`User ${victim} not found!`);
-}
+};
 
-export default exec;
+export { 
+  exec,
+};

@@ -32,4 +32,6 @@ const exec = (dabber, msg) => {
   );
 };
 
-export default exec;
+export { 
+  exec,
+};

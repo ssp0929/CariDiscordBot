@@ -22,6 +22,8 @@ const exec = async (msg, searchTerm) => {
     Winston.log("error", tenorRandomSearch);
     msg.channel.send("The Tenor gif API seems to be having issues right now! Please try again later.");
   }
-}
+};
 
-export default exec;
+export { 
+  exec,
+};

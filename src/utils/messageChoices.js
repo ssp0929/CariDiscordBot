@@ -10,4 +10,4 @@ export {
   hateArray,
   haegArray,
   postureArray,
-}
+};

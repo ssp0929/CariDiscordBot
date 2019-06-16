@@ -20,6 +20,8 @@ const generate = (choices = 2, partitionRange = 10000) => {
   }
   
   return currentChoice;
-}
+};
 
-export default generate;
+export { 
+  generate,
+};

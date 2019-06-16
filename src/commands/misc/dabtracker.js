@@ -12,5 +12,6 @@ const exec = async (msg) => {
   return msg.channel.send("Profile not found!");
 };
 
-export default exec;
-
+export { 
+  exec,
+};

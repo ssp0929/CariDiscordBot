@@ -3,7 +3,7 @@
 import Discord from "discord.js";
 import { Users, Reports } from "../../models/mongo/schema";
 
-const exec = async(msg, offender) => {
+const exec = async (msg, offender) => {
   const discordUser = await Users.find({ discordName: offender });
     
   if (discordUser.length) {
@@ -34,5 +34,6 @@ const exec = async(msg, offender) => {
   }
 };
 
-export default exec;
-
+export { 
+  exec,
+};
