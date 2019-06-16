@@ -11,13 +11,14 @@ import {
 } from "../utils/messageChoices";
 import * as dabIncrement from "../utils/dabIncrement";
 
+const TENOR_KEY = process.env.TENOR_API_KEY;
+
 const pickRandomDab = async (msg) => {
-  const tenorAPIKey = process.env.TENOR_API_KEY;
   const searchTerm = "dab";
   const contentFilter = "low";
   const mediaFilter = "basic";
   const queryLimit = 1;
-  const tenorRandomSearchEndpoint = `https://api.tenor.com/v1/random?key=${tenorAPIKey}&q=${searchTerm}&contentfilter=${contentFilter}&media_filter=${mediaFilter}&limit=${queryLimit}`;
+  const tenorRandomSearchEndpoint = `https://api.tenor.com/v1/random?key=${TENOR_KEY}&q=${searchTerm}&contentfilter=${contentFilter}&media_filter=${mediaFilter}&limit=${queryLimit}`;
   const tenorRandomSearch = await axios.get(tenorRandomSearchEndpoint);
 
   if (tenorRandomSearch.data.results && tenorRandomSearch.data.results.length) {
@@ -48,30 +49,32 @@ const haegReplace = (userMessageStringPreserveCase) => {
   return reconstructedMessageArray.join(" ");
 };
 
-module.exports = {
-  async onMessage(msg) {
-    const userMessageString = msg.content.toLowerCase();
-    const userMessageStringPreserveCase = msg.content;
-    const userMessageArray = userMessageString.split(" ");
+const onMessage = async (msg) => {
+  const userMessageString = msg.content.toLowerCase();
+  const userMessageStringPreserveCase = msg.content;
+  const userMessageArray = userMessageString.split(" ");
 
-    if (userMessageArray.some(word => pingArray.includes(word))) {
-      msg.reply("Pong!");
-    }
+  if (userMessageArray.some(word => pingArray.includes(word))) {
+    msg.reply("Pong!");
+  }
 
-    if (userMessageArray.some(word => dabArray.includes(word))) {
-      pickRandomDab(msg);
-    }
+  if (userMessageArray.some(word => dabArray.includes(word))) {
+    pickRandomDab(msg);
+  }
 
-    if (userMessageArray.some(word => hateArray.includes(word))) {
-      msg.channel.send("https://streamable.com/lhanx");
-    }
+  if (userMessageArray.some(word => hateArray.includes(word))) {
+    msg.channel.send("https://streamable.com/lhanx");
+  }
 
-    if (userMessageArray.some(word => haegArray.includes(word))) {
-      msg.reply(`I think you meant to say '${haegReplace(userMessageStringPreserveCase)}'`);
-    }
+  if (userMessageArray.some(word => haegArray.includes(word))) {
+    msg.reply(`I think you meant to say '${haegReplace(userMessageStringPreserveCase)}'`);
+  }
 
-    if (userMessageArray.some(word => postureArray.includes(word))) {
-      msg.react("🍆");
-    }
-  },
-};
+  if (userMessageArray.some(word => postureArray.includes(word))) {
+    msg.react("🍆");
+  }
+}
+
+export {
+  onMessage
+}
