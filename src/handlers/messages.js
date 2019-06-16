@@ -75,4 +75,6 @@ const onMessage = async (msg) => {
   }
 };
 
-export default onMessage;
+export { 
+  onMessage,
+};
