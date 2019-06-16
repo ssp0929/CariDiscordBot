@@ -18,4 +18,6 @@ const loadDiscordUsersIntoMongo = (msg) => {
   }
 };
 
-export default loadDiscordUsersIntoMongo;
+export { 
+  loadDiscordUsersIntoMongo,
+};
