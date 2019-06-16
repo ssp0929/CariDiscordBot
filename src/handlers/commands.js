@@ -9,6 +9,7 @@ import * as AttackCommand from "../commands/rpg/attack";
 import * as ProfileCommand from "../commands/rpg/profile";
 import * as ReportCommand from "../commands/misc/report";
 import * as ReportsCommand from "../commands/misc/reports";
+import * as GifSearchCommand from "../commands/misc/gifsearch";
 
 // TODO: Restructure commands for dynamic command handling rather than manually adding to this command handler
 const generalCommands = (msg, command, userMessageArray) => {
@@ -35,6 +36,9 @@ const generalCommands = (msg, command, userMessageArray) => {
       break;
     case "reports":
       ReportsCommand.exec(msg);
+      break;
+    case "gif":
+      GifSearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
       break;
     case "":
       msg.channel.send("You didn't specify a command you stupid idiot!");
@@ -68,12 +72,12 @@ const dynamicPrefixHandler = (msg, prefix, command, userMessageArray) => {
   }
 };
 
-module.exports = {
-  onCommand(msg, prefix) {
-    const userMessageString = msg.content;
-    const userMessageArray = userMessageString.toLowerCase().split(" ");
-    const command = userMessageArray[0].substring(prefix.length);
-    
-    dynamicPrefixHandler(msg, prefix, command, userMessageArray);
-  },
-};
+const onCommand = (msg, prefix) => {
+  const userMessageString = msg.content;
+  const userMessageArray = userMessageString.toLowerCase().split(" ");
+  const command = userMessageArray[0].substring(prefix.length);
+  
+  dynamicPrefixHandler(msg, prefix, command, userMessageArray);
+}
+
+export default onCommand;

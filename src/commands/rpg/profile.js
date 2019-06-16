@@ -15,15 +15,15 @@ Misc:
 \`\`\`
   `;
 
-module.exports = {
-  async exec(msg) {
-    const discordUser = await Users.find({ discordName: msg.author.username.toLowerCase() });
+const exec = async(msg) => {
+  const discordUser = await Users.find({ discordName: msg.author.username.toLowerCase() });
     
-    if (discordUser.length) {
-      const profileString = buildProfileString(discordUser);
-      return msg.channel.send(profileString);
-    }
+  if (discordUser.length) {
+    const profileString = buildProfileString(discordUser);
+    return msg.channel.send(profileString);
+  }
 
-    return msg.channel.send("Profile not found!");
-  },
+  return msg.channel.send("Profile not found!");
 };
+
+export default exec;
