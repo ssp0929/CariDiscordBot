@@ -14,9 +14,9 @@ const exec = async (msg, searchTerm) => {
 
   if (tenorRandomSearch.data.results && tenorRandomSearch.data.results.length) {
     const result = tenorRandomSearch.data.results[0];
-    const gifUrl = result.media[0].gif.url;
 
-    if (gifUrl) {
+    if (result && result.length) {
+      const gifUrl = result.media[0].gif.url;
       Winston.log("info", `Random gif chosen ${gifUrl}`);
       msg.channel.send(gifUrl);
     } else {
