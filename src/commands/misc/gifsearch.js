@@ -12,16 +12,16 @@ const exec = async (msg, searchTerm) => {
   const tenorRandomSearchEndpoint = `https://api.tenor.com/v1/random?key=${TENOR_KEY}&q=${encodedSearchTerm}&contentfilter=${contentFilter}&media_filter=${mediaFilter}&limit=${queryLimit}`;
   const tenorRandomSearch = await axios.get(tenorRandomSearchEndpoint);
 
-  if (tenorRandomSearch.data.results && tenorRandomSearch.data.results.length) {
+  if (tenorRandomSearch.data) {
     const result = tenorRandomSearch.data.results[0];
 
-    if (result && result.length) {
+    if (result) {
       const gifUrl = result.media[0].gif.url;
       Winston.log("info", `Random gif chosen ${gifUrl}`);
       msg.channel.send(gifUrl);
     } else {
       Winston.log("info", `No gif results found for ${searchTerm}`);
-      msg.channel.send(`No results found for ${searchTerm}`);
+      msg.channel.send(`No results found for search term: ${searchTerm}`);
     }
   } else {
     Winston.log("error", tenorRandomSearch);
