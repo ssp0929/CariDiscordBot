@@ -16,8 +16,13 @@ const exec = async (msg, searchTerm) => {
     const result = tenorRandomSearch.data.results[0];
     const gifUrl = result.media[0].gif.url;
 
-    Winston.log("info", `Random gif chosen ${gifUrl}`);
-    msg.channel.send(gifUrl);
+    if (gifUrl) {
+      Winston.log("info", `Random gif chosen ${gifUrl}`);
+      msg.channel.send(gifUrl);
+    } else {
+      Winston.log("info", `No gif results found for ${searchTerm}`);
+      msg.channel.send(`No results found for ${searchTerm}`);
+    }
   } else {
     Winston.log("error", tenorRandomSearch);
     msg.channel.send("The Tenor gif API seems to be having issues right now! Please try again later.");

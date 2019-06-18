@@ -28,7 +28,7 @@ const reportSchema = mongoose.Schema({
   discordName: String,
   reportedBy: String,
   reason: String,
-  timestamp: { type: Date, default: Date.now() },
+  timestamp: { type: Date, default: new Date() },
 });
 
 const Users = mongoose.model("users", userSchema);
