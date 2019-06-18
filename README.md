@@ -3,8 +3,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5132e6c174904671858f6f622c2c9f48)](https://app.codacy.com/app/ssp0929/CariDiscordBot?utm_source=github.com&utm_medium=referral&utm_content=ssp0929/CariDiscordBot&utm_campaign=Badge_Grade_Dashboard)
 [![Codeship Status for ssp0929/CariDiscordBot](https://app.codeship.com/projects/3d38c6d0-3254-0137-4b7f-0efae62d2715/status?branch=master)](https://app.codeship.com/projects/332168)
 
-[Trello](https://trello.com/b/LWKgAyiK)
-
 ## Development
 Due to the nature of how Discord 'apps' work, we cannot spin up multiple instances of the same bot application mapping to bot users in Discord. As a workaround, you can create your own personal Discord 'app' [here](https://discordapp.com/developers/applications) and invite them to the channel to test your development work.
 
