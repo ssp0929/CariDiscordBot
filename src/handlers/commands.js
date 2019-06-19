@@ -5,11 +5,10 @@ import * as HelpCommand from "../commands/misc/help";
 import * as DabTrackerCommand from "../commands/misc/dabtracker";
 import * as DabRankingsCommand from "../commands/misc/dabrankings";
 import * as SyncCommand from "../commands/admin/sync";
-import * as AttackCommand from "../commands/rpg/attack";
-import * as ProfileCommand from "../commands/rpg/profile";
 import * as ReportCommand from "../commands/misc/report";
 import * as ReportsCommand from "../commands/misc/reports";
-import * as GifSearchCommand from "../commands/misc/gifsearch";
+import * as GifSearchCommand from "../commands/api/gifsearch";
+import * as AndadJokeCommand from "../commands/api/andadjokes";
 
 // TODO: Restructure commands for dynamic command handling rather than manually adding to this command handler
 const generalCommands = (msg, command, userMessageArray) => {
@@ -40,24 +39,11 @@ const generalCommands = (msg, command, userMessageArray) => {
     case "gif":
       GifSearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
       break;
+    case "joke":
+      AndadJokeCommand.exec(msg);
+      break;
     case "":
       msg.channel.send("You didn't specify a command you stupid idiot!");
-      break;
-    default:
-      msg.channel.send("That's not a valid command. Use !help to see a list of available commands.");
-  }
-};
-
-const rpgCommands = (msg, command, userMessageArray) => {
-  switch (command) {
-    case "attack":
-      AttackCommand.exec(msg, userMessageArray.slice(1).join(" "));
-      break;
-    case "profile":
-      ProfileCommand.exec(msg);
-      break;
-    case "":
-      msg.channel.send("You didn't specify a command you dumb idiot!");
       break;
     default:
       msg.channel.send("That's not a valid command. Use !help to see a list of available commands.");
@@ -67,8 +53,6 @@ const rpgCommands = (msg, command, userMessageArray) => {
 const dynamicPrefixHandler = (msg, prefix, command, userMessageArray) => {
   if (prefix === "!") {
     generalCommands(msg, command, userMessageArray);
-  } else if (prefix === "?") {
-    rpgCommands(msg, command, userMessageArray);
   }
 };
 
