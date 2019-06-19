@@ -4,7 +4,7 @@ import axios from "axios";
 const exec = async (msg) => {
   const dadJokeEndpoint = "https://icanhazdadjoke.com/";
   const dadJoke = await axios.get(dadJokeEndpoint, {
-    headers: { Accept: "application/json" }
+    headers: { Accept: "application/json" },
   });
 
   if (dadJoke.data && dadJoke.data.status === 200) {
