@@ -52,6 +52,7 @@ client.on("message", (msg) => {
 
 client.on("guildMemberAdd", (member) => {
   const channel = member.guild.channels.find(ch => ch.name === "general");
+  LoadUsers.syncUserInMongo(member);
 
   if (!channel) {
     return;
@@ -60,6 +61,6 @@ client.on("guildMemberAdd", (member) => {
   channel.send(`Welcome to the server, ${member}`);
 });
 
-client.on("userUpdate", (oldMember, newMember) => {
+client.on("guildMemberUpdate", (oldMember, newMember) => {
   LoadUsers.syncUserInMongo(newMember);
 });
