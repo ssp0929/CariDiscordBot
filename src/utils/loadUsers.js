@@ -23,6 +23,24 @@ const loadDiscordUsersIntoMongo = (msg) => {
   }
 };
 
+const syncUserInMongo = (member) => {
+  if (member.user.bot === false) {
+    Users.update({ 
+      discordId: member.id,
+    }, {
+      discordId: member.id,
+      discordName: member.user.username.toLowerCase(),
+    }, { 
+      upsert: true, 
+      setDefaultsOnInsert: true,
+    });
+    Winston.log("info", `${member.user.username} loaded.`);
+  } else {
+    Winston.log("info", `${member.user.username} is a bot! Not loaded.`);
+  }
+};
+
 export { 
   loadDiscordUsersIntoMongo,
+  syncUserInMongo,
 };
