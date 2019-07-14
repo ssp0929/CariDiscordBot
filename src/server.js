@@ -5,6 +5,7 @@ import { Loggly, flushLogsAndExit } from "winston-loggly-bulk";
 import connectToDb from "./models/mongo/db";
 import * as MessageHandler from "./handlers/messages";
 import * as CommandHandler from "./handlers/commands";
+import * as LoadUsers from "./utils/loadUsers";
 
 // Initialize Winston Logger to transport logs to Loggly
 Winston.add(new Loggly({
@@ -51,10 +52,15 @@ client.on("message", (msg) => {
 
 client.on("guildMemberAdd", (member) => {
   const channel = member.guild.channels.find(ch => ch.name === "general");
+  LoadUsers.syncUserInMongo(member);
 
   if (!channel) {
     return;
   }
 
   channel.send(`Welcome to the server, ${member}`);
+});
+
+client.on("guildMemberUpdate", (oldMember, newMember) => {
+  LoadUsers.syncUserInMongo(newMember);
 });
