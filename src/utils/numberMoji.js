@@ -2,7 +2,8 @@ const emojiArray = [":zero:", ":one:", ":two:", ":three:", ":four:", ":five:", "
 
 const exec = (numArray) => {
   let emojiString = "";
-  for (let num = 0; num < numArray.length; num++) {
+  const numArrayLength = numArray.length;
+  for (let num = 0; num < numArrayLength; num++) {
     emojiString += emojiArray[parseInt(numArray[num], 10)];
   }
   return emojiString;
