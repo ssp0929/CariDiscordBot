@@ -4,8 +4,7 @@ import "dotenv/config";
 import axios from "axios";
 import { 
   pingArray, 
-  dabArray, 
-  hateArray, 
+  dabArray,
   haegArray,
   postureArray,
 } from "../utils/messageChoices";
@@ -60,10 +59,6 @@ const onMessage = async (msg) => {
 
   if (userMessageArray.some(word => dabArray.includes(word))) {
     pickRandomDab(msg);
-  }
-
-  if (userMessageArray.some(word => hateArray.includes(word))) {
-    msg.channel.send("https://streamable.com/lhanx");
   }
 
   if (userMessageArray.some(word => haegArray.includes(word))) {

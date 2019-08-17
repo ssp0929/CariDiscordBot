@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import * as Winston from "winston";
-import * as HelpCommand from "../commands/misc/help";
 import * as DabTrackerCommand from "../commands/misc/dabtracker";
 import * as DabRankingsCommand from "../commands/misc/dabrankings";
 import * as SyncCommand from "../commands/admin/sync";
@@ -9,6 +8,7 @@ import * as ReportCommand from "../commands/misc/report";
 import * as ReportsCommand from "../commands/misc/reports";
 import * as GifSearchCommand from "../commands/api/gifsearch";
 import * as AndadJokeCommand from "../commands/api/andadjokes";
+import * as MovieSearchCommand from "../commands/api/omdb";
 
 // TODO: Restructure commands for dynamic command handling rather than manually adding to this command handler
 const generalCommands = (msg, command, userMessageArray) => {
@@ -21,8 +21,8 @@ const generalCommands = (msg, command, userMessageArray) => {
         msg.channel.send("You are not allowed to run that command!");
       }
       break;
-    case "help":
-      HelpCommand.exec(msg);
+    case "movie":
+      MovieSearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
       break;
     case "dabtracker":
       DabTrackerCommand.exec(msg);

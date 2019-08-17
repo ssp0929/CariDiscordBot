@@ -9,7 +9,7 @@ import * as LoadUsers from "./utils/loadUsers";
 
 // Initialize Winston Logger to transport logs to Loggly
 Winston.add(new Loggly({
-  token: "cf22d076-08ff-4c02-8197-e488a5e8d406",
+  token: process.env.LOGGLY_TOKEN,
   subdomain: "stephenpark",
   tags: ["Winston-NodeJS"],
   json: true,
