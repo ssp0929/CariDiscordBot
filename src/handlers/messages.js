@@ -53,19 +53,19 @@ const onMessage = async (msg) => {
   const userMessageStringPreserveCase = msg.content;
   const userMessageArray = userMessageString.split(" ");
 
-  if (userMessageArray.some(word => pingArray.includes(word))) {
+  if (userMessageArray.some((word) => pingArray.includes(word))) {
     msg.reply("Pong!");
   }
 
-  if (userMessageArray.some(word => dabArray.includes(word))) {
+  if (userMessageArray.some((word) => dabArray.includes(word))) {
     pickRandomDab(msg);
   }
 
-  if (userMessageArray.some(word => haegArray.includes(word))) {
+  if (userMessageArray.some((word) => haegArray.includes(word))) {
     msg.reply(`I think you meant to say '${haegReplace(userMessageStringPreserveCase)}'`);
   }
 
-  if (userMessageArray.some(word => postureArray.includes(word))) {
+  if (userMessageArray.some((word) => postureArray.includes(word))) {
     msg.react("🍆");
   }
 };
