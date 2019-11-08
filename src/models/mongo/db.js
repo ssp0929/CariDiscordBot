@@ -13,7 +13,6 @@ const connectToDb = async () => {
   const connectionString = `mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true`;
   try {
     await mongoose.connect(connectionString, { useNewUrlParser: true, autoIndex: false });
-    console.log("Connected to MongoDB");
     Winston.log("info", "Connected to MongoDB");
   } catch (err) {
     Winston.log("error", err);

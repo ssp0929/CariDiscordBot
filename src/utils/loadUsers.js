@@ -27,7 +27,7 @@ const syncUserInMongo = (member) => {
       { discordId: member.id }, 
       { $set: { discordName: member.nickname ? member.nickname.toLowerCase() : member.user.username.toLowerCase() } }, 
       { upsert: true, setDefaultsOnInsert: true }, 
-      (err) => { if (err) console.log(err); },
+      (err) => { if (err) Winston.log(err); },
     );
 
     Winston.log("info", `${member.nickname} synced.`);

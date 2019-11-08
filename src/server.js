@@ -15,10 +15,10 @@ Winston.add(new Loggly({
   json: true,
 }));
 
+Winston.add(new Winston.transports.Console());
+
 // Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
-  // eslint-disable-next-line no-console
-  console.log(err.stack);
   Winston.log("error", err.stack);
   flushLogsAndExit();
 });
@@ -36,22 +36,19 @@ client.on("ready", () => {
 
 client.on("message", (msg) => {
   const generalPrefix = "!";
-  const rpgPrefix = "?";
 
   // Ignore triggering off of bot messages
   if (msg.author.bot) { return; }
   
   if (msg.content.indexOf(generalPrefix) === 0) {
     CommandHandler.onCommand(msg, generalPrefix);
-  } else if (msg.content.indexOf(rpgPrefix) === 0) {
-    CommandHandler.onCommand(msg, rpgPrefix);
   } else {
     MessageHandler.onMessage(msg);
   }
 });
 
 client.on("guildMemberAdd", (member) => {
-  const channel = member.guild.channels.find(ch => ch.name === "general");
+  const channel = member.guild.channels.find((ch) => ch.name === "general");
   LoadUsers.syncUserInMongo(member);
 
   if (!channel) {
