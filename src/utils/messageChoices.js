@@ -1,11 +1,13 @@
-const pingArray = ["ping"];
 const dabArray = ["dab"];
 const haegArray = ["hell", "heck"];
 const postureArray = ["posture"];
+const nutArray = ["nut"];
+const buttArray = ["butt", "ass"];
 
 export {
-  pingArray,
   dabArray,
   haegArray,
   postureArray,
+  nutArray,
+  buttArray,
 };

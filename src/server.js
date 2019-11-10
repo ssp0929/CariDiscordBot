@@ -19,7 +19,7 @@ Winston.add(new Winston.transports.Console());
 
 // Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
-  Winston.log("error", err.stack);
+  Winston.error(err.stack);
   flushLogsAndExit();
 });
 
@@ -31,7 +31,7 @@ const client = new Discord.Client();
 client.login(process.env.TOKEN);
 
 client.on("ready", () => {
-  Winston.log("info", `Logged in as ${client.user.tag}!`);
+  Winston.info(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", (msg) => {

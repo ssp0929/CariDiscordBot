@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 import * as Winston from "winston";
 import * as DabTrackerCommand from "../commands/misc/dabtracker";
 import * as DabRankingsCommand from "../commands/misc/dabrankings";
@@ -10,14 +8,29 @@ import * as GifSearchCommand from "../commands/api/gifsearch";
 import * as AndadJokeCommand from "../commands/api/andadjokes";
 import * as MovieSearchCommand from "../commands/api/omdb";
 
-// TODO: Restructure commands for dynamic command handling rather than manually adding to this command handler
 const generalCommands = (msg, command, userMessageArray) => {
+  const commands = {
+    movie: "!movie {movieTitle} - Responds with general information from movie API about the given title.",
+    dabtracker: "!dabtracker - Responds with your personal tracked dabcount.",
+    dabrankings: "!dabrankings - Responds with the top 10 dabber by dabcount.",
+    report: "!report {user} - Allows you to report another user for being a bad birl.",
+    reports: "!reports - Responds with all reports against you.",
+    gif: "!gif {searchTerm} - Responds with a GIF grabbed from the tenor API matching your search term.",
+    joke: "!joke - Responds with a funny joke from a dad joke API.",
+    help: "!help - Responds with all the commands that are available.",
+  };
+
+  const commandsEntries = Object.entries(commands);
+
+  Winston.info(`msg: ${msg} | command: ${command}`);
+
+  let message = "";
   switch (command) {
     case "sync":
       if (msg.author.username === "iFrost") {
         SyncCommand.exec(msg);
       } else {
-        Winston.log("info", `${msg.author.username} attempted to run the sync command!`);
+        Winston.info(`${msg.author.username} attempted to run the sync command!`);
         msg.channel.send("You are not allowed to run that command!");
       }
       break;
@@ -41,6 +54,12 @@ const generalCommands = (msg, command, userMessageArray) => {
       break;
     case "joke":
       AndadJokeCommand.exec(msg);
+      break;
+    case "help":
+      for (const [name, description] of commandsEntries) {
+        message += `\n${name}\n\t${description}\n`;
+      }
+      msg.channel.send(`\`\`\`${message}\`\`\``);
       break;
     case "":
       msg.channel.send("You didn't specify a command you stupid idiot!");

@@ -6,7 +6,7 @@ const exec = async (msg) => {
     [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
     (err, data) => {
       if (err) {
-        Winston.log("error", err);
+        Winston.error(err);
       } else {
         total = data;
       }

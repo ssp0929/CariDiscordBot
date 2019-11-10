@@ -1,11 +1,9 @@
 /* eslint-disable max-len */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import * as Winston from "winston";
-import { Users, Reports } from "../models/mongo/schema";
+import { Users } from "../models/mongo/schema";
 
 const loadDiscordUsersIntoMongo = (msg) => {
+  // eslint-disable-next-line no-unused-vars
   for (const [key, value] of msg.guild.members) {
     if (value.user.bot === false) {
       Users.create({
@@ -14,9 +12,9 @@ const loadDiscordUsersIntoMongo = (msg) => {
         dabCount: 0,
       });
 
-      Winston.log("info", `${value.user.username} loaded.`);
+      Winston.info(`${value.user.username} loaded.`);
     } else {
-      Winston.log("info", `${value.user.username} is a bot! Not loaded.`);
+      Winston.info(`${value.user.username} is a bot! Not loaded.`);
     }
   }
 };
@@ -30,9 +28,9 @@ const syncUserInMongo = (member) => {
       (err) => { if (err) Winston.log(err); },
     );
 
-    Winston.log("info", `${member.nickname} synced.`);
+    Winston.info(`${member.nickname} synced.`);
   } else {
-    Winston.log("info", `${member.nickname} is a bot! Not synced.`);
+    Winston.info(`${member.nickname} is a bot! Not synced.`);
   }
 };
 

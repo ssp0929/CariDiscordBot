@@ -16,13 +16,13 @@ const exec = (dabber, msg) => {
         msg.channel.send(`*Nice one!* ${dabber} just hit ${updateData.dabCount} dabs!`);
       }
       if (updateError) {
-        Winston.log("error", updateError);
+        Winston.error(updateError);
       }
       Users.aggregate(
         [{ $match: { dabCount: { $gt: 0 } } }, { $group: { _id: null, total: { $sum: "$dabCount" } } }],
         (aggError, aggData) => {
           if (aggError) {
-            Winston.log("error", aggError);
+            Winston.error(aggError);
           } else if (aggData[0].total % 25 === 0) {
             msg.channel.send(`**S E R V E R   D A B S   J U S T   H I T**   ${numberMoji.exec(String(aggData[0].total))}`);
           }

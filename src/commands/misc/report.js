@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable max-len */
 import Discord from "discord.js";
 import { Users, Reports } from "../../models/mongo/schema";
 
@@ -9,7 +8,12 @@ const exec = async (msg, offender) => {
   if (discordUser.length) {
     msg.reply("What is the reason for your report? (You have 30 seconds to reply)");
 
-    const collector = new Discord.MessageCollector(msg.channel, m => m.author.id === msg.author.id, { time: 30000 });
+    const collector = new Discord.MessageCollector(
+      msg.channel, 
+      (m) => m.author.id === msg.author.id, 
+      { time: 30000 },
+    );
+
     let reasonResponse;
     collector.on("collect", (response) => {
       reasonResponse = response.content;

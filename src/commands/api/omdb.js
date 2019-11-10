@@ -35,7 +35,7 @@ Website: ${data.Website}
     \`\`\``;
     return msg.channel.send(message);
   }
-  Winston.log("error", "OMDB endpoint returned with a non-200 status.");
+  Winston.error("OMDB endpoint returned with a non-200 status.");
   return msg.channel.send("OMDB API is having issues!");
 };
 
