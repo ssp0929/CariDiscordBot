@@ -25,6 +25,8 @@ class Client extends Discord.Client {
       if (msg.author.id === "638572127611518995" || msg.author.id === "198881445996003328") {
         if (Math.floor(Math.random() * 1000) >= 900) {
           msg.channel.send("Ok, boomer");
+        } else if (msg.author.id === "198881445996003328" && Math.floor(Math.random() * 1000) >= 990) {
+          msg.reply("https://vignette.wikia.nocookie.net/spongebob/images/b/b7/Old_Man_Walker.png/revision/latest?cb=20190713180349");
         }
       }
     
