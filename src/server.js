@@ -1,71 +1,16 @@
 import "dotenv/config";
-import Discord from "discord.js";
-import * as Winston from "winston";
-import { Loggly, flushLogsAndExit } from "winston-loggly-bulk";
+import Client from "./classes/Client";
+import initLogger from "./utils/logger";
 import connectToDb from "./models/mongo/db";
-import * as MessageHandler from "./handlers/messages";
-import * as CommandHandler from "./handlers/commands";
-import * as LoadUsers from "./utils/loadUsers";
 
-// Initialize Winston Logger to transport logs to Loggly
-Winston.add(new Loggly({
-  token: process.env.LOGGLY_TOKEN,
-  subdomain: "stephenpark",
-  tags: ["Winston-NodeJS"],
-  json: true,
-}));
+(async () => {
+  // Initialize Logger
+  await initLogger();
 
-Winston.add(new Winston.transports.Console());
+  // Initialize Mongo
+  await connectToDb();
 
-// Handle uncaught exceptions
-process.on("uncaughtException", (err) => {
-  Winston.error(err.stack);
-  flushLogsAndExit();
-});
-
-// Initialize Mongo
-connectToDb();
-
-// Initialize and login
-const client = new Discord.Client();
-client.login(process.env.TOKEN);
-
-client.on("ready", () => {
-  Winston.info(`Logged in as ${client.user.tag}!`);
-});
-
-client.on("message", (msg) => {
-  const generalPrefix = "!";
-
-  // Special case to handle OldMan bot encroaching on Cari's turf
-  // Also Andad
-  if (msg.author.id === "638572127611518995" || msg.author.id === "198881445996003328") {
-    if (Math.floor(Math.random() * 1000) >= 800) {
-      msg.channel.send("Ok, boomer");
-    }
-  }
-
-  // Ignore triggering off of bot messages
-  if (msg.author.bot) { return; }
-  
-  if (msg.content.indexOf(generalPrefix) === 0) {
-    CommandHandler.onCommand(msg, generalPrefix);
-  } else {
-    MessageHandler.onMessage(msg);
-  }
-});
-
-client.on("guildMemberAdd", (member) => {
-  const channel = member.guild.channels.find((ch) => ch.name === "general");
-  LoadUsers.syncUserInMongo(member);
-
-  if (!channel) {
-    return;
-  }
-
-  channel.send(`Welcome to the server, ${member}`);
-});
-
-client.on("guildMemberUpdate", (oldMember, newMember) => {
-  LoadUsers.syncUserInMongo(newMember);
-});
+  // Initialize and login
+  const client = new Client();
+  client.listen();
+})();
