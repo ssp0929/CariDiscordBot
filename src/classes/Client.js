@@ -22,7 +22,7 @@ class Client extends Discord.Client {
       // Special case to handle OldMan bot encroaching on Cari's turf
       // Also Andad
       if (msg.author.id === "638572127611518995" || msg.author.id === "198881445996003328") {
-        if (Math.floor(Math.random() * 1000) >= 800) {
+        if (Math.floor(Math.random() * 1000) >= 900) {
           msg.channel.send("Ok, boomer");
         }
       }
