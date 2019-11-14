@@ -1,3 +1,4 @@
+import "dotenv/config";
 import Discord from "discord.js";
 import Winston from "winston";
 import * as MessageHandler from "../handlers/messages";
