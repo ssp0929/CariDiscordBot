@@ -38,7 +38,7 @@ client.on("message", (msg) => {
   const generalPrefix = "!";
 
   // Special case to handle OldMan bot encroaching on Cari's turf
-  if (msg.author.id === 638572127611518995) {
+  if (msg.author.id === "638572127611518995") {
     if (Math.floor(Math.random() * 1000) >= 800) {
       msg.channel.send("Ok, boomer");
     }
