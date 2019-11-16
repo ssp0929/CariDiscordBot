@@ -4,7 +4,8 @@ import * as DabRankingsCommand from "../commands/misc/dabrankings";
 import * as SyncCommand from "../commands/admin/sync";
 import * as ReportCommand from "../commands/misc/report";
 import * as ReportsCommand from "../commands/misc/reports";
-import * as GifSearchCommand from "../commands/api/gifsearch";
+import * as TenorSearchCommand from "../commands/api/tenorSearch";
+import * as GiphySearchCommand from "../commands/api/giphySearch";
 import * as AndadJokeCommand from "../commands/api/andadjokes";
 import * as MovieSearchCommand from "../commands/api/omdb";
 
@@ -15,7 +16,8 @@ const generalCommands = (msg, command, userMessageArray) => {
     dabrankings: "!dabrankings - Responds with the top 10 dabber by dabcount.",
     report: "!report {user} - Allows you to report another user for being a bad birl.",
     reports: "!reports - Responds with all reports against you.",
-    gif: "!gif {searchTerm} - Responds with a GIF grabbed from the tenor API matching your search term.",
+    tenor: "!tenor {searchTerm} - Responds with a GIF grabbed from the tenor API matching your search term.",
+    giphy: "!giphy {searchTerm} - Responds with a GIF grabbed from the tenor API matching your search term.",
     joke: "!joke - Responds with a funny joke from a dad joke API.",
     help: "!help - Responds with all the commands that are available.",
   };
@@ -49,8 +51,11 @@ const generalCommands = (msg, command, userMessageArray) => {
     case "reports":
       ReportsCommand.exec(msg);
       break;
-    case "gif":
-      GifSearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
+    case "tenor":
+      TenorSearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
+      break;
+    case "giphy":
+      GiphySearchCommand.exec(msg, userMessageArray.slice(1).join(" "));
       break;
     case "joke":
       AndadJokeCommand.exec(msg);
