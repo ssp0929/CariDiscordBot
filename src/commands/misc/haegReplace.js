@@ -1,5 +1,5 @@
 import {
-  haegArray,
+  haegMap,
 } from "../../utils/messageChoices";
 
 const exec = (msg) => {
@@ -7,7 +7,7 @@ const exec = (msg) => {
   const preserveCaseArray = userMessageStringPreserveCase.split(" ");
   const reconstructedMessageArray = [];
   for (const word of preserveCaseArray) {
-    if (haegArray.includes(word.toLowerCase())) {
+    if (haegMap[word.toLowerCase()]) {
       reconstructedMessageArray.push("HAEG");
     } else {
       reconstructedMessageArray.push(word);

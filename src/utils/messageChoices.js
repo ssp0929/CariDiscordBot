@@ -1,13 +1,25 @@
-const dabArray = ["dab"];
-const haegArray = ["hell", "heck"];
-const postureArray = ["posture"];
-const nutArray = ["nut"];
-const buttArray = ["butt", "ass"];
+const dabMap = {
+  dab: true,
+};
+const haegMap = {
+  hell: true,
+  heck: true,
+};
+const postureMap = {
+  posture: true,
+};
+const nutMap = {
+  nut: true,
+};
+const buttMap = {
+  butt: true,
+  ass: true,
+};
 
 export {
-  dabArray,
-  haegArray,
-  postureArray,
-  nutArray,
-  buttArray,
+  dabMap,
+  haegMap,
+  postureMap,
+  nutMap,
+  buttMap,
 };
